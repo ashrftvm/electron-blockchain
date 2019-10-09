@@ -50,6 +50,14 @@ function createWindow() {
           }
         }
       ]
+    },
+    {
+      label: "Info",
+      submenu: [
+        {
+          label: "Submenu 1"
+        }
+      ]
     }
   ]);
 
