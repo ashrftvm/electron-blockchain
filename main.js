@@ -1,5 +1,6 @@
 const { app, BrowserWindow, Menu } = require("electron");
 const { shell } = require("electron");
+const ipc = require("electron").ipcMain;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -84,6 +85,10 @@ app.on("activate", () => {
   if (win === null) {
     createWindow();
   }
+});
+
+ipc.on("update-notify-value", function(event, arg) {
+  win.webContents.send("targetPriceVal", arg);
 });
 
 // In this file you can include the rest of your app's specific main process

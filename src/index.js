@@ -2,6 +2,7 @@ const electron = require("electron");
 const path = require("path");
 const BrowserWindow = electron.remote.BrowserWindow;
 const axios = require("axios");
+const ipc = require("electron").ipcRenderer;
 
 const notifyBtn = document.getElementById("notifyBtn");
 const price = document.querySelector("h1");
@@ -38,7 +39,12 @@ notifyBtn.addEventListener("click", e => {
     win = null;
   });
   // Open the DevTools.
-  //   win.webContents.openDevTools();
+  win.webContents.openDevTools();
   win.loadURL(modalPath);
   win.show();
+});
+
+ipc.on("targetPriceVal", function(event, arg) {
+  targetPriceVal = Number(arg);
+  targetPrice.innerHTML = "$" + targetPriceVal.toLocaleString("en");
 });
