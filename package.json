@@ -4,12 +4,16 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/btc.ico --prune=true --out=release-builds",
+    "package-win": "electron-packager . electron-crypto --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/btc.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Crypto App\"",
+    "package-linux": "electron-packager . electron-crypto --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/btc.ico --prune=true --out=release-builds"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "6.0.12"
+    "electron": "6.0.12",
+    "electron-packager": "^14.0.6"
   },
   "dependencies": {
     "axios": "^0.19.0"
